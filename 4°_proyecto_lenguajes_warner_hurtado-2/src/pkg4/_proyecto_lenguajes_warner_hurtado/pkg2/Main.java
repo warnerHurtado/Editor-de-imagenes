@@ -28,7 +28,7 @@ public class Main {
                 + "lenguagesProyect\\cmake-build-debug\\untitled2.exe Francia.jpg"
                 + " nuevaFrancia ejecutando prueba ARIALNEGRITA 28");*/
         Process p = Runtime.getRuntime().exec ("C:\\Users\\warne\\Desktop\\IV_Semestre\\Lenguajes\\Proyectos\\"
-                + "lenguagesProyect\\cmake-build-debug\\untitled2.exe Francia.jpg"
+                + "4_Proyecto\\resourses\\executable\\imageEdit.exe Francia.jpg"
                 + " nuevaFrancia ejecutando prueba ARIALNEGRITA 28");
         
                     // Se obtiene el stream de salida del programa
