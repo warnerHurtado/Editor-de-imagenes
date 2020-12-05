@@ -117,7 +117,7 @@ public class Project {
         FileReader read;
         BufferedReader storage;
         String chain;
-        String pathG = Main.pathGlobal.concat("\\pictures\\edited_images\\");
+        String pathG = "resourses\\pictures\\edited_images\\";
 
         file = new File("projects.txt");
 

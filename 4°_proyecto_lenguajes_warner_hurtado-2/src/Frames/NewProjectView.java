@@ -243,7 +243,7 @@ public class NewProjectView extends javax.swing.JFrame {
         String imgLoad    = imagePathText.getText();
         String belowTex   = belowText.getText();
         String aboveTex   = aboveText.getText();
-        String fondTex    = Main.pathGlobal.concat("font\\".concat(styleTextComboBox.getSelectedItem().toString()));
+        String fondTex    = "resourses\\font\\".concat(styleTextComboBox.getSelectedItem().toString());
         String sizeTex    = (String) sizeTextComboBox.getSelectedItem();
         System.out.println(fondTex);
         try {

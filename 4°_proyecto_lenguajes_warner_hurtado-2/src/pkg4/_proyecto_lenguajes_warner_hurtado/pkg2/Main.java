@@ -29,16 +29,7 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static ArrayList<Project> projects = new ArrayList();
-    
-    //CAMBIAR EL pathProject POR EL PATH HASTA LA CARPETA DONDE SE ENCUENTRE EL PROJECTO
-    private static final String pathProject = "C:\\Users\\warne\\Desktop\\IV_Semestre\\Lenguajes\\Proyectos\\";
-    public static String pathGlobal = pathProject.concat("4_Proyecto\\resourses\\");
 
-    /**
-     * example gotten of:
-     * http://www.chuidiang.org/java/ejemplos/Runtime/runtime.php funtion for
-     * execute .exe of C
-     */
     /**
      * metodo para ejecutar el .exe
      *
@@ -61,17 +52,22 @@ public class Main {
         File imgObj = new File(pathImage);
         int id = projects.size();
         String name = id + imgObj.getName();
-        String pathImageSave = pathGlobal.concat("\\pictures\\edited_images\\".concat(name));
-        
-        String probando = pathGlobal.concat("executable\\imageEdit.exe " + pathImage
-                    + " " + pathImageSave + " " + textAbove + " " + textBelow + " " + fontText + " " + size);
-        
+        String pathImageSave = "resourses\\\\pictures\\edited_images\\".concat(name);
+
+        String probando = "resourses\\executable\\imageEdit.exe " + pathImage
+                + " " + pathImageSave + " " + textAbove + " " + textBelow + " " + fontText + " " + size;
+
         System.err.println(probando);
 
         System.err.println("running .exe");
+        /**
+         * example gotten of:
+         * http://www.chuidiang.org/java/ejemplos/Runtime/runtime.php funtion
+         * for execute .exe of C
+         */
         try {
-            Process p = Runtime.getRuntime().exec(pathGlobal.concat("executable\\imageEdit.exe " + pathImage
-                    + " " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size));
+            Process p = Runtime.getRuntime().exec("resourses\\executable\\imageEdit.exe " + pathImage
+                    + " " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size);
             // Se obtiene el stream de salida del programa
             InputStream is = p.getInputStream();
             /* Se prepara un bufferedReader para poder leer la salida más comodamente. */
@@ -112,7 +108,7 @@ public class Main {
             System.err.println("Hay un error. " + e);
         }
         Path origenPath = Paths.get(pathImage);
-        String pathNewImg = pathGlobal.concat("pictures\\edited_images\\".concat(imgObj.getName()));
+        String pathNewImg = "resourses\\pictures\\edited_images\\".concat(imgObj.getName());
         Path destinoPath = Paths.get(pathNewImg);
         try {
             Files.copy(origenPath, destinoPath, StandardCopyOption.REPLACE_EXISTING);
