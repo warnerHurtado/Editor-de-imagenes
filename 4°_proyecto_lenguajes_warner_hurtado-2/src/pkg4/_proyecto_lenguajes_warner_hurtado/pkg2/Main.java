@@ -5,10 +5,22 @@
  */
 package pkg4._proyecto_lenguajes_warner_hurtado.pkg2;
 
+import Classes.Project;
+import Frames.mainView;
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,51 +28,113 @@ import java.io.InputStreamReader;
  */
 public class Main {
 
+    public static ArrayList<Project> projects = new ArrayList();
+    
+    //CAMBIAR EL pathProject POR EL PATH HASTA LA CARPETA DONDE SE ENCUENTRE EL PROJECTO
+    private static final String pathProject = "C:\\Users\\warne\\Desktop\\IV_Semestre\\Lenguajes\\Proyectos\\";
+    public static String pathGlobal = pathProject.concat("4_Proyecto\\resourses\\");
+
     /**
-     * example gotten of: http://www.chuidiang.org/java/ejemplos/Runtime/runtime.php
-     * funtion for execute .exe of C
+     * example gotten of:
+     * http://www.chuidiang.org/java/ejemplos/Runtime/runtime.php funtion for
+     * execute .exe of C
      */
-    public static void Execute(){
-                System.err.println("running .exe");
-    //Runtime app = Runtime.getRuntime();
-    try{
-        /*app.exec("C:\\Users\\warne\\Desktop\\IV_Semestre\\Lenguajes\\Proyectos\\"
-                + "lenguagesProyect\\cmake-build-debug\\untitled2.exe Francia.jpg"
-                + " nuevaFrancia ejecutando prueba ARIALNEGRITA 28");*/
-        Process p = Runtime.getRuntime().exec ("C:\\Users\\warne\\Desktop\\IV_Semestre\\Lenguajes\\Proyectos\\"
-                + "4_Proyecto\\resourses\\executable\\imageEdit.exe Francia.jpg"
-                + " nuevaFrancia ejecutando prueba ARIALNEGRITA 28");
+    /**
+     * metodo para ejecutar el .exe
+     *
+     * @param nameProject
+     * @param pathImage
+     * @param textAbove
+     * @param textBelow
+     * @param fontText
+     * @param size
+     */
+    public static void execute(String nameProject, String pathImage, String textAbove,
+            String textBelow, String fontText, String size) throws IOException {
+
+        for (Project project : Main.projects) {
+            if (project.getName().equals(nameProject)) {
+                JOptionPane.showMessageDialog(null, "Ya existe un proyecto con este nombre!.", "Inane custom dialog", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        File imgObj = new File(pathImage);
+        int id = projects.size();
+        String name = id + imgObj.getName();
+        String pathImageSave = pathGlobal.concat("\\pictures\\edited_images\\".concat(name));
         
-                    // Se obtiene el stream de salida del programa
-        InputStream is = p.getInputStream();
-        /* Se prepara un bufferedReader para poder leer la salida más comodamente. */
-            BufferedReader br = new BufferedReader (new InputStreamReader (is));
-            
+        String probando = pathGlobal.concat("executable\\imageEdit.exe " + pathImage
+                    + " " + pathImageSave + " " + textAbove + " " + textBelow + " " + fontText + " " + size);
+        
+        System.err.println(probando);
+
+        System.err.println("running .exe");
+        try {
+            Process p = Runtime.getRuntime().exec(pathGlobal.concat("executable\\imageEdit.exe " + pathImage
+                    + " " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size));
+            // Se obtiene el stream de salida del programa
+            InputStream is = p.getInputStream();
+            /* Se prepara un bufferedReader para poder leer la salida más comodamente. */
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             // Se lee la primera linea
             String aux = br.readLine();
-            
+
             // Mientras se haya leido alguna linea
-            while (aux!=null)
-            {
+            while (aux != null) {
                 // Se escribe la linea en pantalla
-                System.out.println (aux);
-                
+                System.out.println(aux);
+
+                if (aux.equals("Error to charge Image")) {
+                }
+
+                // instrucción switch con tipo de datos String
+                switch (aux) {
+                    case "Error to charge Image":
+                        JOptionPane.showMessageDialog(null, aux, "Inane error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    case "The image is very small":
+                        JOptionPane.showMessageDialog(null, aux, "Inane error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    case "The lengh or size of the text is very big":
+                        JOptionPane.showMessageDialog(null, aux, "Inane error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    case "Error to create font":
+                        JOptionPane.showMessageDialog(null, aux, "Inane error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    default:
+                        break;
+                }
                 // y se lee la siguiente.
                 aux = br.readLine();
             }
+            Runtime.runFinalizersOnExit(true);
+        } catch (IOException e) {
+            System.err.println("Hay un error. " + e);
+        }
+        Path origenPath = Paths.get(pathImage);
+        String pathNewImg = pathGlobal.concat("pictures\\edited_images\\".concat(imgObj.getName()));
+        Path destinoPath = Paths.get(pathNewImg);
+        try {
+            Files.copy(origenPath, destinoPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (FileNotFoundException ex) {
+            LOGGER.log(Level.SEVERE, ex.getMessage());
+        }
+        Project.createProject(nameProject, pathNewImg, pathImageSave);
+        Project.writeFile("projects", nameProject);
+        Project.writeFile("projects", imgObj.getName());
+        Project.writeFile("projects", name);
     }
-    catch(IOException e){
-        System.out.println("Hay un error. "+ e);
-    }
-    }
-    
+
     /**
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Execute();
+        //Leyendo los datos guardados
+        Project.readFile();
+        //Llamando la ventana principal
+        mainView p = new mainView();
+        p.show();
     }
-    
+
 }
