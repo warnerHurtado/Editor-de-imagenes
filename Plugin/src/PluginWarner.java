@@ -3,8 +3,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -166,12 +164,19 @@ public class PluginWarner extends javax.swing.JFrame implements Plugin {
     private javax.swing.JLabel jLabel5;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
-
+    /**
+     * 
+     * @param path 
+     */
     @Override
     public void loadFile(String path) {
         changeColor(path);
     }
 
+    /**
+     * https://www.geeksforgeeks.org/image-processing-java-set-5-colored-red-green-blue-image-conversion/
+     * @param path 
+     */
     public void changeColor(String path) {
         BufferedImage img = null;
         File f = null;
