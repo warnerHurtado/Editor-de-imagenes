@@ -34,7 +34,6 @@ public class plugginsView extends javax.swing.JFrame {
         File file = new File("src");
         pluginList = file.list();
         
-        System.out.println(pluginList.length);
         for (String plug : pluginList) {
             
             if ((plug.length() > 8) && !plug.contains("$") && !plug.equals("Plugin.java")) {
@@ -94,6 +93,7 @@ public class plugginsView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        pluginsComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pluginsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pluginsComboBoxActionPerformed(evt);

@@ -175,6 +175,7 @@ public class MyProjectsView extends javax.swing.JFrame {
                 ImageIcon image = new ImageIcon(project.getImage());
                 Icon icon = new ImageIcon(image.getImage().getScaledInstance(183, 176, Image.SCALE_DEFAULT));
                 jLabel2.setIcon(icon);
+                
                 ImageIcon image2 = new ImageIcon(project.getImageEdited());
                 Icon icon2 = new ImageIcon(image2.getImage().getScaledInstance(183, 176, Image.SCALE_DEFAULT));
                 jLabel3.setIcon(icon2);
