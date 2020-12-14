@@ -18,7 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,8 +59,8 @@ public class Main {
          * for execute .exe of C
          */
         try {
-            Process p = Runtime.getRuntime().exec("resourses\\executable\\imageEdit.exe \n" + pathImage
-                    + "\n " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size);
+            Process p = Runtime.getRuntime().exec("resourses\\executable\\imageEdit.exe \"" + pathImage
+                    + "\" \"" + pathImageSave + "\" \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size);
             // Se obtiene el stream de salida del programa
             InputStream is = p.getInputStream();
             /* Se prepara un bufferedReader para poder leer la salida más comodamente. */
