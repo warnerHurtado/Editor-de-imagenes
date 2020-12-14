@@ -222,7 +222,7 @@ public class NewProjectView extends javax.swing.JFrame {
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         mainView n = new mainView();
-        n.show();
+        n.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackBtnActionPerformed
 

@@ -7,7 +7,6 @@ package pkg4._proyecto_lenguajes_warner_hurtado.pkg2;
 
 import Classes.Project;
 import Frames.mainView;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -52,12 +51,7 @@ public class Main {
         File imgObj = new File(pathImage);
         int id = projects.size();
         String name = id + imgObj.getName();
-        String pathImageSave = "resourses\\\\pictures\\edited_images\\".concat(name);
-
-        String probando = "resourses\\executable\\imageEdit.exe " + pathImage
-                + " " + pathImageSave + " " + textAbove + " " + textBelow + " " + fontText + " " + size;
-
-        System.err.println(probando);
+        String pathImageSave = "resourses\\pictures\\edited_images\\".concat(name);
 
         System.err.println("running .exe");
         /**
@@ -66,8 +60,8 @@ public class Main {
          * for execute .exe of C
          */
         try {
-            Process p = Runtime.getRuntime().exec("resourses\\executable\\imageEdit.exe " + pathImage
-                    + " " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size);
+            Process p = Runtime.getRuntime().exec("resourses\\executable\\imageEdit.exe \n" + pathImage
+                    + "\n " + pathImageSave + " \"" + textAbove + "\" \"" + textBelow + "\" " + fontText + " " + size);
             // Se obtiene el stream de salida del programa
             InputStream is = p.getInputStream();
             /* Se prepara un bufferedReader para poder leer la salida más comodamente. */
@@ -103,7 +97,7 @@ public class Main {
                 // y se lee la siguiente.
                 aux = br.readLine();
             }
-            Runtime.runFinalizersOnExit(true);
+            
         } catch (IOException e) {
             System.err.println("Hay un error. " + e);
         }
@@ -113,7 +107,7 @@ public class Main {
         try {
             Files.copy(origenPath, destinoPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (FileNotFoundException ex) {
-            LOGGER.log(Level.SEVERE, ex.getMessage());
+            System.err.println(ex);
         }
         Project.createProject(nameProject, pathNewImg, pathImageSave);
         Project.writeFile("projects", nameProject);
@@ -130,7 +124,7 @@ public class Main {
         Project.readFile();
         //Llamando la ventana principal
         mainView p = new mainView();
-        p.show();
+        p.setVisible(true);
     }
 
 }

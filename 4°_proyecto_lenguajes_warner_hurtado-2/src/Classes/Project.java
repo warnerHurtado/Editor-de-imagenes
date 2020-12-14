@@ -18,9 +18,9 @@ import pkg4._proyecto_lenguajes_warner_hurtado.pkg2.Main;
  */
 public class Project {
 
-    String name;
-    String image;
-    String imageEdited;
+    private String name;
+    private String image;
+    private String imageEdited;
 
     /**
      * Constructor

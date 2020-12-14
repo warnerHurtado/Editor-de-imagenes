@@ -95,7 +95,7 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/foliación-300x200-2.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,7 +113,7 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -126,8 +126,8 @@ public class mainView extends javax.swing.JFrame {
                     .addComponent(neyProjectBtn)
                     .addComponent(quitBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,7 +135,7 @@ public class mainView extends javax.swing.JFrame {
 
     private void neyProjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_neyProjectBtnActionPerformed
         NewProjectView n = new NewProjectView();
-        n.show();
+        n.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_neyProjectBtnActionPerformed
 
@@ -145,7 +145,7 @@ public class mainView extends javax.swing.JFrame {
 
     private void myProjectsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProjectsBtnActionPerformed
         MyProjectsView n = new MyProjectsView();
-        n.show();
+        n.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_myProjectsBtnActionPerformed
 
